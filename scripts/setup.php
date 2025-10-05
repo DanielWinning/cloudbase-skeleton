@@ -19,12 +19,8 @@ if (!file_exists($composerFile)) {
 }
 
 $composer = json_decode(file_get_contents($composerFile), true);
-
-// Ask for package and namespace
 $packageName = ask('Package name (vendor/package)', $composer['name'] ?? 'cloudbase/example-plugin');
-$namespace   = ask('PHP namespace (PSR-4)', 'CloudBase\\ExamplePlugin\\');
-
-// Update composer.json
+$namespace   = ask('PHP namespace (PSR-4)', 'CloudBase\\Skeleton\\');
 $composer['name'] = $packageName;
 $composer['autoload']['psr-4'] = [
     $namespace => 'src/'
@@ -33,33 +29,31 @@ $composer['autoload']['psr-4'] = [
 file_put_contents($composerFile, json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 echo "✅ Updated composer.json\n";
 
-// Replace namespace in all PHP files
 $iterator = new RecursiveIteratorIterator(
     new RecursiveDirectoryIterator("$root/src", FilesystemIterator::SKIP_DOTS)
 );
 foreach ($iterator as $file) {
     if ($file->getExtension() === 'php') {
-        echo $file->getPathname() . PHP_EOL;
         $content = file_get_contents($file->getRealPath());
         $updated = str_replace("CloudBase\Skeleton", rtrim($namespace, '\\'), $content);
 
         if ($updated !== $content) {
-            echo 'Updating ' . $file->getPathname() . PHP_EOL;
             file_put_contents($file->getRealPath(), $updated);
         }
     }
 }
-//
-//$servicesFile = "$root/config/services.yaml";
-//if (file_exists($servicesFile)) {
-//    $content = file_get_contents($servicesFile);
-//    $updated = str_replace('CloudBase\\Skeleton', rtrim($namespace, '\\'), $content);
-//
-//    if ($updated !== $content) {
-//        file_put_contents($servicesFile, $updated);
-//        echo "🔧 Updated namespace in config/services.yaml\n";
-//    }
-//}
+
+$servicesFile = "$root/config/services.yaml";
+
+if (file_exists($servicesFile)) {
+    $content = file_get_contents($servicesFile);
+    $updated = str_replace('CloudBase\\Skeleton', rtrim($namespace, '\\'), $content);
+
+    if ($updated !== $content) {
+        file_put_contents($servicesFile, $updated);
+        echo "✅ Updated namespace in config/services.yaml\n";
+    }
+}
 
 echo "✅ Replaced namespace references in src/\n";
 echo "\n🎉 Plugin skeleton setup complete!\n";
