@@ -1,0 +1,12 @@
+services:
+  CloudBase\Skeleton\Controller\:
+    resource: '../src/Controller'
+    tags: [ 'controller.service_arguments' ]
+    autowire: true
+    public: true
+
+  CloudBase\Skeleton\ServiceClass:
+    class: CloudBase\Skeleton\ServiceClass
+    public: true
+    autowire: true
+    autoconfigure: true
