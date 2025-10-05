@@ -2,8 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Danny\TestPlugin\Controller;
+namespace CloudBase\Skeleton\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class PluginController
 {
+    #[Route('/my-plugin')]
+    public function index(): Response
+    {
+        return new Response('My Plugin Index');
+    }
 }

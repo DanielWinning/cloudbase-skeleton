@@ -3,6 +3,9 @@
 
 declare(strict_types=1);
 
+const DEFAULT_PACKAGE_NAME = 'vendor/cloudbase-plugin';
+const DEFAULT_NAMESPACE = 'Vendor\\CloudBasePlugin\\';
+
 function ask(string $question, string $default = ''): string
 {
     echo $question . ($default ? " [$default]" : '') . ': ';
@@ -19,8 +22,8 @@ if (!file_exists($composerFile)) {
 }
 
 $composer = json_decode(file_get_contents($composerFile), true);
-$packageName = ask('Package name (vendor/package)', $composer['name'] ?? 'cloudbase/example-plugin');
-$namespace   = ask('PHP namespace (PSR-4)', 'CloudBase\\Skeleton\\');
+$packageName = ask('Package name (vendor/package)', DEFAULT_PACKAGE_NAME);
+$namespace   = ask('PHP namespace (PSR-4)', DEFAULT_NAMESPACE);
 $composer['name'] = $packageName;
 $composer['autoload']['psr-4'] = [
     $namespace => 'src/'
