@@ -35,6 +35,7 @@ echo "✅ Updated composer.json\n";
 $iterator = new RecursiveIteratorIterator(
     new RecursiveDirectoryIterator("$root/src", FilesystemIterator::SKIP_DOTS)
 );
+
 foreach ($iterator as $file) {
     if ($file->getExtension() === 'php') {
         $content = file_get_contents($file->getRealPath());
@@ -45,6 +46,8 @@ foreach ($iterator as $file) {
         }
     }
 }
+
+echo "✅ Replaced namespace references in src/\n";
 
 $servicesFile = "$root/config/services.yaml";
 
@@ -58,5 +61,4 @@ if (file_exists($servicesFile)) {
     }
 }
 
-echo "✅ Replaced namespace references in src/\n";
 echo "\n🎉 Plugin skeleton setup complete!\n";
