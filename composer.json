@@ -1,26 +1,27 @@
 {
-    "name": "cloudbase/skeleton",
-    "description": "The official CloudBase plugin template package.",
-    "version": "1.0.0",
-    "type": "project",
-    "keywords": [
-        "cloudbase",
-        "plugin",
-        "template"
-    ],
-    "autoload": {
-        "psr-4": {
-            "CloudBase\\Skeleton\\": "src/"
-        }
-    },
-    "require-dev": {
-        "symfony/http-foundation": "^7.3",
-        "symfony/routing": "^7.3"
-    },
-    "scripts": {
-        "post-create-project-cmd": [
-            "php scripts/setup.php",
-            "rm -rf scripts"
-        ]
+  "name": "cloudbase/skeleton",
+  "description": "The official CloudBase plugin template package.",
+  "version": "1.0.0",
+  "license": "GPL-3.0-or-later",
+  "type": "project",
+  "keywords": [
+    "cloudbase",
+    "plugin",
+    "template"
+  ],
+  "autoload": {
+    "psr-4": {
+      "CloudBase\\Skeleton\\": "src/"
     }
+  },
+  "require-dev": {
+    "symfony/http-foundation": "^7.3",
+    "symfony/routing": "^7.3"
+  },
+  "scripts": {
+    "post-create-project-cmd": [
+      "php scripts/setup.php",
+      "rm -rf scripts"
+    ]
+  }
 }
