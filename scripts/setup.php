@@ -39,7 +39,8 @@ $iterator = new RecursiveIteratorIterator(
 foreach ($iterator as $file) {
     if ($file->getExtension() === 'php') {
         $content = file_get_contents($file->getRealPath());
-        $updated = str_replace("CloudBase\Skeleton", rtrim($namespace, '\\'), $content);
+        $updated = str_replace('CloudBase\Skeleton', rtrim($namespace, '\\'), $content);
+        $updated = str_replace('@cloudbase/skeleton', $packageName, $updated);
 
         if ($updated !== $content) {
             file_put_contents($file->getRealPath(), $updated);

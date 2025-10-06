@@ -1,8 +1,19 @@
 # CloudBase | Plugin Skeleton | Changelog
 
+## [1.2.0] - 2025-10-07
+### Added
+- Add default template.
+
+### Changed
+- Example controller now extends `CloudBaseController`.
+
+--- 
+
 ## [1.1.1] - 2025-10-05
 ### Changed
 - Updated package contents and ignored files.
+
+---
 
 ## [1.1.0] - 2025-10-05
 ### Added
@@ -10,6 +21,8 @@
 
 ### Fixed
 - Fix for incorrect namespacing.
+
+---
 
 ## [1.0.0] - 2025-10-05
 ### Added
